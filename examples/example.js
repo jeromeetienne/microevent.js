@@ -8,7 +8,7 @@ var Ticker	= function( interval ){
 	var self	= this;
 	setInterval(function(){
 		self.trigger('tick', new Date());
-	}, 500);
+	}, 1000);
 };
 /**
  * make Ticker support MicroEventjs
@@ -20,7 +20,7 @@ var ticker = new Ticker();
 // bind the 'tick' event
 ticker.bind('tick', function(date) {
 	// display to check
-	console.log('notified data'+ date);
+	console.log('notified date', date);
 });
 
 

@@ -40,9 +40,6 @@ MicroEvent.mixin	= function(destObject){
 	for(var i = 0; i < props.length; i ++){
 		destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
 	}
-	// set the data
-	// - TODO make it more eleguant
-	// - fcts can be shared
 	destObject.prototype['fcts']	= {};
 }
 

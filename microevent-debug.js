@@ -1,37 +1,27 @@
 /**
- * MicroEvent - to make any js object an event emitter (server or browser)
- * 
- * - pure javascript - server compatible, browser compatible
- * - dont rely on the browser doms
- * - super simple - you get it immediatly, no mistery, no magic involved
+ * MicroEvent.js debug
  *
- * - create a MicroEventdebug with goodies to debug
- *   - make it safer to use
+ * # it is the same as MicroEvent.js but it adds checks to help you debug
 */
 
 var MicroEvent	= function(){}
 MicroEvent.prototype	= {
-	fcts	: {},	// TODO rename this to a more specific name
+	fcts	: {},	// TODO rename this to a more specific name to avoid collision while mixin()
 	bind	: function(event, fct){
-		this.fcts[event]	= this.fcts[event]	|| [];
+		this.fcts[event] = this.fcts[event]	|| [];
 		this.fcts[event].push(fct);
-		return this;
 	},
 	unbind	: function(event, fct){
-		console.assert(typeof fct === 'function')
-		var arr	= this.fcts[event];
-		if( typeof arr !== 'undefined' )	return this;
-		console.assert(arr.indexOf(fct) !== -1);
-		arr.splice(arr.indexOf(fct), 1);
-		return this;
+		console.assert(typeof fct === 'function');
+		if( event in this.fcts === false  )	return;
+		console.assert(this.fcts[event].indexOf(fct) !== -1);
+		this.fcts[event].splice(this.fcts[event].indexOf(fct), 1);
 	},
 	trigger	: function(event /* , args... */){
-		var arr	= this.fcts[event];
-		if( typeof arr === 'undefined' )	return this;
-		for(var i = 0; i < arr.length; i++){
-			arr[i].apply(this, Array.prototype.slice.call(arguments, 1))
+		if( event in this.fcts === false  )	return;
+		for(var i = 0; i < this.fcts[event].length; i++){
+			this.fcts[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
 		}
-		return this;
 	}
 };
 
