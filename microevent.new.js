@@ -5,26 +5,33 @@
  * - dont rely on the browser doms
  * - super simple - you get it immediatly, no mistery, no magic involved
  *
- * - create a MicroEventDebug with goodies to debug
+ * - create a MicroEventdebug with goodies to debug
  *   - make it safer to use
 */
 
 var MicroEvent	= function(){}
 MicroEvent.prototype	= {
-	fcts	: {},
+	fcts	: {},	// TODO rename this to a more specific name
 	bind	: function(event, fct){
 		this.fcts[event]	= this.fcts[event]	|| [];
 		this.fcts[event].push(fct);
+		return this;
 	},
 	unbind	: function(event, fct){
-		if( event in this.fcts === false  )	return this;
-		this.fcts[event].splice(this.fcts[event].indexOf(fct), 1);
+		console.assert(typeof fct === 'function')
+		var arr	= this.fcts[event];
+		if( typeof arr !== 'undefined' )	return this;
+		console.assert(arr.indexOf(fct) !== -1);
+		arr.splice(arr.indexOf(fct), 1);
+		return this;
 	},
 	trigger	: function(event /* , args... */){
-		if( event in this.fcts === false  )	return;
-		for(var i = 0; i < this.fcts[event].length; i++){
-			this.fcts[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
+		var arr	= this.fcts[event];
+		if( typeof arr === 'undefined' )	return this;
+		for(var i = 0; i < arr.length; i++){
+			arr[i].apply(this, Array.prototype.slice.call(arguments, 1))
 		}
+		return this;
 	}
 };
 
@@ -47,6 +54,6 @@ MicroEvent.mixin	= function(destObject){
 }
 
 // export in common js
-if( typeof module !== "undefined"){
+if( typeof module !== "undefined" && ('exports' in module)){
 	module.exports	= MicroEvent
 }

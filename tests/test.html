@@ -2,56 +2,29 @@
 <html> 
 <head></head> 
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js"></script>
 	<script src="../microevent.js"></script>
 	<script>
-/* Periodically send out dummy events 
---------------------------------------------*/
-var Metronome	= function( interval ){
-	var self	= this;
-	var nextTick	= function(){
-		self.trigger('tick', Math.random()*100, "far");
-		setTimeout(nextTick, interval);
-	};	
-	nextTick();
-};
-
-Metronome.prototype.foo	= function(){
-	console.log("bar")
-}
-
-
-// how to inherit using underscore
-// - NOTE: which one is the best ? new MicroEvent or MicroEvent.prototype
-//   - is there some issues reference issue if i dont do new ?
-// - require("underscore").extend(Metronome.prototype, new MicroEvent)
-// _.extend(Metronome.prototype, MicroEvent.prototype);
-
-// how to inherit using nodejs
-// - require('util').inherits(Metronome, MicroEvent);
-// - FIXME this one doesnt work
-// NOTE: node event emitter doesnt need new ? can i do the same ?
-// - util.inherits(MyStream, events.EventEmitter);
-//require('util').inherits(Metronome, MicroEvent);
-//require('util').inherits(Metronome.prototype, MicroEvent.prototype);
-
-// how to inherit using jQuery
-// jQuery.extend(Metronome.prototype, new MicroEvent);
-
-// how to inherit super simple
-//Metronome.prototype = new MicroEvent;
-
-
-var clock = new Metronome(500);
-console.log("proto", clock.__proto__)
-
-clock.bind('tick', function(number, str) {
-	console.log('number emitted: '+ number, str);
-	if( "foo" in this )	this.foo();
-	else			console.log("prototype of Metronome got erased")
-}.bind(clock));
-	
+		/**
+		* Ticker is a class periodically sending out dummy tick events
+		*/
+		var Ticker	= function( interval ){
+			var self	= this;
+			setInterval(function(){
+				self.trigger('tick', new Date());
+			}, 500);
+		};
+		/**
+		* make Ticker support MicroEventjs
+		*/
+		MicroEvent.mixin(Ticker);
+		
+		// create a ticker
+		var ticker = new Ticker();
+		// bind the 'tick' event
+		ticker.bind('tick', function(date) {
+			// display to check
+			console.log('notified data'+ date);
+		});
 	</script>
 </body> 
 </html> 
