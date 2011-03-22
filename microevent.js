@@ -13,11 +13,11 @@ var MicroEvent	= function(){}
 MicroEvent.prototype	= {
 	fcts	: {},
 	bind	: function(event, fct){
-		this.fcts[event]	= this.fcts[event]	|| [];
+		this.fcts[event] = this.fcts[event]	|| [];
 		this.fcts[event].push(fct);
 	},
 	unbind	: function(event, fct){
-		if( event in this.fcts === false  )	return this;
+		if( event in this.fcts === false  )	return;
 		this.fcts[event].splice(this.fcts[event].indexOf(fct), 1);
 	},
 	trigger	: function(event /* , args... */){
@@ -47,6 +47,6 @@ MicroEvent.mixin	= function(destObject){
 }
 
 // export in common js
-if( typeof module !== "undefined"){
+if( typeof module !== "undefined" && ('exports' in module)){
 	module.exports	= MicroEvent
 }
