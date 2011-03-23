@@ -4,25 +4,25 @@
  * # it is the same as MicroEvent.js but it adds checks to help you debug
 */
 
-var MicroEvent	= function(){}
+var MicroEvent	= function(){};
 MicroEvent.prototype	= {
-	bind	: function(event, fct){
+	subscribe	: function(event, fct){
 		this._events = this._events || {};		
 		this._events[event] = this._events[event]	|| [];
 		this._events[event].push(fct);
 	},
-	unbind	: function(event, fct){
+	unsubscribe	: function(event, fct){
 		console.assert(typeof fct === 'function');
 		this._events = this._events || {};		
 		if( event in this._events === false  )	return;
 		console.assert(this._events[event].indexOf(fct) !== -1);
 		this._events[event].splice(this._events[event].indexOf(fct), 1);
 	},
-	trigger	: function(event /* , args... */){
+	publish	: function(event /* , args... */){
 		this._events = this._events || {};		
 		if( event in this._events === false  )	return;
 		for(var i = 0; i < this._events[event].length; i++){
-			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
+			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
 		}
 	}
 };
@@ -35,13 +35,13 @@ MicroEvent.prototype	= {
  * @param {Object} the object which will support MicroEvent
 */
 MicroEvent.mixin	= function(destObject){
-	var props	= ['bind', 'unbind', 'trigger'];
+	var props	= ['subscribe', 'unsubscribe', 'publish'];
 	for(var i = 0; i < props.length; i ++){
 		destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
 	}
-}
+};
 
 // export in common js
 if( typeof module !== "undefined" && ('exports' in module)){
-	module.exports	= MicroEvent
+	module.exports	= MicroEvent;
 }

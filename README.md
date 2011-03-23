@@ -28,12 +28,12 @@ Both use the same code in different contexts. Let me walk you thru it.
 ## Example
 
 First we define the class which gonna use MicroEvent.js. This is a ticker, it is
-triggering 'tick' event every second, and add the current date as parameter
+publishing 'tick' event every second, and add the current date as parameter
 
     var Ticker = function(){
         var self = this;
         setInterval(function(){
-            self.trigger('tick', new Date());
+            self.publish('tick', new Date());
         }, 1000);
     };
 
@@ -45,9 +45,9 @@ Now lets actually use the _Ticker_ Class. First, create the object.
 
     var ticker = new Ticker();
     
-and bind our _tick_ event with its data parameter
+and subscribe our _tick_ event with its data parameter
 
-    ticker.bind('tick', function(date) {
+    ticker.subscribe('tick', function(date) {
         console.log('notified date', date);
     });
 
