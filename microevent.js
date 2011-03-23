@@ -11,22 +11,21 @@
 
 var MicroEvent	= function(){}
 MicroEvent.prototype	= {
-	fcts	: {},
 	bind	: function(event, fct){
-		this.fcts = this.fcts || {};
-		this.fcts[event] = this.fcts[event]	|| [];
-		this.fcts[event].push(fct);
+		this._events = this._events || {};
+		this._events[event] = this._events[event]	|| [];
+		this._events[event].push(fct);
 	},
 	unbind	: function(event, fct){
-		this.fcts = this.fcts || {};
-		if( event in this.fcts === false  )	return;
-		this.fcts[event].splice(this.fcts[event].indexOf(fct), 1);
+		this._events = this._events || {};
+		if( event in this._events === false  )	return;
+		this._events[event].splice(this._events[event].indexOf(fct), 1);
 	},
 	trigger	: function(event /* , args... */){
-		this.fcts = this.fcts || {};
-		if( event in this.fcts === false  )	return;
-		for(var i = 0; i < this.fcts[event].length; i++){
-			this.fcts[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
+		this._events = this._events || {};
+		if( event in this._events === false  )	return;
+		for(var i = 0; i < this._events[event].length; i++){
+			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
 		}
 	}
 };

@@ -6,21 +6,23 @@
 
 var MicroEvent	= function(){}
 MicroEvent.prototype	= {
-	fcts	: {},	// TODO rename this to a more specific name to avoid collision while mixin()
 	bind	: function(event, fct){
-		this.fcts[event] = this.fcts[event]	|| [];
-		this.fcts[event].push(fct);
+		this._events = this._events || {};		
+		this._events[event] = this._events[event]	|| [];
+		this._events[event].push(fct);
 	},
 	unbind	: function(event, fct){
 		console.assert(typeof fct === 'function');
-		if( event in this.fcts === false  )	return;
-		console.assert(this.fcts[event].indexOf(fct) !== -1);
-		this.fcts[event].splice(this.fcts[event].indexOf(fct), 1);
+		this._events = this._events || {};		
+		if( event in this._events === false  )	return;
+		console.assert(this._events[event].indexOf(fct) !== -1);
+		this._events[event].splice(this._events[event].indexOf(fct), 1);
 	},
 	trigger	: function(event /* , args... */){
-		if( event in this.fcts === false  )	return;
-		for(var i = 0; i < this.fcts[event].length; i++){
-			this.fcts[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
+		this._events = this._events || {};		
+		if( event in this._events === false  )	return;
+		for(var i = 0; i < this._events[event].length; i++){
+			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
 		}
 	}
 };
@@ -37,10 +39,6 @@ MicroEvent.mixin	= function(destObject){
 	for(var i = 0; i < props.length; i ++){
 		destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
 	}
-	// set the data
-	// - TODO make it more eleguant
-	// - fcts can be shared
-	destObject.prototype['fcts']	= {};
 }
 
 // export in common js
