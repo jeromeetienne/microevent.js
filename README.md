@@ -6,7 +6,7 @@ It works on node.js and browser. It is a single .js file containing
 a <a href="https://github.com/jeromeetienne/microevent.js/blob/master/microevent.js#L12-29">20 lines class</a>
 (only 321-bytes after minification+gzip). 
 
-# How to Use It
+## How to Use It
 
 You need a single file [microevent.js](https://github.com/jeromeetienne/microevent.js/raw/master/microevent.js).
 Include it in a webpage via the usual script tag.
@@ -25,7 +25,7 @@ That's it. The repository contains an [example in browser](https://github.com/je
 and an [example in nodejs](https://github.com/jeromeetienne/microevent.js/blob/master/examples/example.js).
 Both use the same code in different contexts. Let me walk you thru it.
 
-# Example
+## Example
 
 First we define the class which gonna use MicroEvent.js. This is a ticker, it is
 triggering 'tick' event every second, and add the current date as parameter
@@ -57,8 +57,7 @@ And you will see this output:
     notified date Tue, 22 Mar 2011 14:43:42 GMT
     ...
 
-
-# Conclusion
+## Conclusion
 
 MicroEvent.js is available on github <a href='https://github.com/jeromeetienne/microevent.js'>here</a>
 under <a href='https://github.com/jeromeetienne/microevent.js/blob/master/MIT-LICENSE.txt'>MIT license</a>.

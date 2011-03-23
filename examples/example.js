@@ -1,5 +1,5 @@
 // import microevent.js 
-var MicroEvent	= require('../microevent.js')
+var MicroEvent	= require('../microevent-debug.js')
 
 /**
  * Ticker is a class periodically sending out dummy tick events
