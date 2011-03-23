@@ -10,7 +10,7 @@
 		var Ticker	= function( interval ){
 			var self	= this;
 			setInterval(function(){
-				self.trigger('tick', new Date());
+				self.publish('tick', new Date());
 			}, 500);
 		};
 		/**
@@ -20,8 +20,8 @@
 		
 		// create a ticker
 		var ticker = new Ticker();
-		// bind the 'tick' event
-		ticker.bind('tick', function(date) {
+		// subscribe the 'tick' event
+		ticker.subscribe('tick', function(date) {
 			// display to check
 			console.log('notified data'+ date);
 		});
