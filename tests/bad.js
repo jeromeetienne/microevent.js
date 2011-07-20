@@ -1,4 +1,4 @@
-var MicroEvent = require('../microevent.js')
+var MicroEvent = require('../microevent-debug.js')
 function Foo () {}
 MicroEvent.mixin(Foo)
 f = new Foo
