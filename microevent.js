@@ -20,7 +20,7 @@ MicroEvent.prototype	= {
 		this._events = this._events || {};
 		if( event in this._events === false  )	return;
 		if (Array.prototype.indexOf)	return this._events[event].splice(Array.prototype.indexOf.call(this._events[event], fct), 1);
-		for ( var i = 0, length = array.length; i < length; i++ ) {
+		for ( var i = 0, length = this._events[event].length; i < length; i++ ) {
 			if ( array[ i ] === elem )	return this._events[event].splice(i, 1);
 		}
 	},
