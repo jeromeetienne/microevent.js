@@ -21,7 +21,7 @@ MicroEvent.prototype	= {
 		if( event in this._events === false  )	return;
 		if (Array.prototype.indexOf)	return this._events[event].splice(Array.prototype.indexOf.call(this._events[event], fct), 1);
 		for ( var i = 0, length = this._events[event].length; i < length; i++ ) {
-			if ( array[ i ] === elem )	return this._events[event].splice(i, 1);
+			if ( this._events[event][ i ] === fct )	return this._events[event].splice(i, 1);
 		}
 	},
 	trigger	: function(event /* , args... */){
