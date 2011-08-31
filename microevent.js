@@ -9,7 +9,7 @@
  *   - make it safer to use
 */
 
-var MicroEvent	= function(){};
+var MicroEvent	= function(){}
 MicroEvent.prototype	= {
 	bind	: function(event, fct){
 		this._events = this._events || {};
@@ -19,10 +19,7 @@ MicroEvent.prototype	= {
 	unbind	: function(event, fct){
 		this._events = this._events || {};
 		if( event in this._events === false  )	return;
-		if (Array.prototype.indexOf)	return this._events[event].splice(Array.prototype.indexOf.call(this._events[event], fct), 1);
-		for ( var i = 0, length = this._events[event].length; i < length; i++ ) {
-			if ( this._events[event][ i ] === fct )	return this._events[event].splice(i, 1);
-		}
+		this._events[event].splice(this._events[event].indexOf(fct), 1);
 	},
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};
@@ -50,4 +47,13 @@ MicroEvent.mixin	= function(destObject){
 // export in common js
 if( typeof module !== "undefined" && ('exports' in module)){
 	module.exports	= MicroEvent
+}
+
+if (!Array.prototype.indexOf) {
+	Array.prototype.indexOf = function(elem) {
+		for (var i = 0, length = this.length; i < length; i++) {
+			if (this[i] === elem)	return i;
+		}
+		return -1;
+	};
 }
