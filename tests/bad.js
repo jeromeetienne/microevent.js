@@ -10,3 +10,8 @@ console.log("")
 
 f.trigger("blerg", "yes")
 b.trigger("blerg", "no")
+
+c = {}
+MicroEvent.mixin(c)
+c.bind('foo',function(bar){console.log(bar)})
+c.trigger('foo','bar')
