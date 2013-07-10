@@ -37,7 +37,11 @@ MicroEvent.prototype	= {
 MicroEvent.mixin	= function(destObject){
 	var props	= ['bind', 'unbind', 'trigger'];
 	for(var i = 0; i < props.length; i ++){
-		destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
+		if( typeof destObject === 'function' ){
+			destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
+		}else{
+			destObject[props[i]] = MicroEvent.prototype[props[i]];
+		}
 	}
 }
 
