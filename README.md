@@ -47,7 +47,7 @@ Now lets actually use the _Ticker_ Class. First, create the object.
     
 and bind our _tick_ event with its data parameter
 
-    ticker.bind('tick', function(date) {
+    ticker.on('tick', function(date) {
         console.log('notified date', date);
     });
 

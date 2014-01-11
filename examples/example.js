@@ -18,7 +18,7 @@ MicroEvent.mixin(Ticker);
 // create a ticker
 var ticker = new Ticker();
 // bind the 'tick' event
-ticker.bind('tick', function(date) {
+ticker.on('tick', function(date) {
 	// display to check
 	console.log('notified date', date);
 });
