@@ -2,13 +2,18 @@
 
 _MicroEvent.js_ is a event emitter library which provides the
 [observer pattern](http://en.wikipedia.org/wiki/Observer_pattern) to javascript objects.
-It works on node.js and browser. It is a single .js file containing
-a <a href="https://github.com/jeromeetienne/microevent.js/blob/master/microevent.js#L12-31">20 lines class</a>
-(only 321-bytes after minification+gzip).
+It works on node.js and browser. <a href="https://github.com/jeroenransijn/microevent.js/blob/master/microevent.js">It is a single .js file containing with only a few lines.</a>
+
+## Different from master branch
+- obj.bind is now obj.on
+- obj.unbind is now obj.off
+- Added chainability `obj.on('a', fn).on('b', fn)`
+- Added on all events function `on('*', function (eventName) { })` and `trigger('*')`
+- Some code reformatted
 
 ## How to Use It
 
-You need a single file [microevent.js](https://github.com/jeromeetienne/microevent.js/raw/master/microevent.js).
+You need a single file [microevent.js](https://github.com/jeroenransijn/microevent.js/raw/master/microevent.js).
 Include it in a webpage via the usual script tag.
 
 ```html
@@ -27,8 +32,8 @@ Now suppose you got a class `Foobar`, and you wish it to support the observer pa
 MicroEvent.mixin(Foobar)
 ```
 
-That's it. The repository contains an [example in browser](https://github.com/jeromeetienne/microevent.js/blob/master/examples/example.html)
-and an [example in nodejs](https://github.com/jeromeetienne/microevent.js/blob/master/examples/example.js).
+That's it. The repository contains an [example in browser](https://github.com/jeroenransijn/microevent.js/blob/master/examples/example.html)
+and an [example in nodejs](https://github.com/jeroenransijn/microevent.js/blob/master/examples/example.js).
 Both use the same code in different contexts. Let me walk you thru it.
 
 ## Example
@@ -75,7 +80,7 @@ notified date Tue, 22 Mar 2011 14:43:42 GMT
 
 ## Conclusion
 
-MicroEvent.js is available on github <a href='https://github.com/jeromeetienne/microevent.js'>here</a>
-under <a href='https://github.com/jeromeetienne/microevent.js/blob/master/MIT-LICENSE.txt'>MIT license</a>.
+MicroEvent.js is available on github <a href='https://github.com/jeroenransijn/microevent.js'>here</a>
+under <a href='https://github.com/jeroenransijn/microevent.js/blob/master/MIT-LICENSE.txt'>MIT license</a>.
 If you hit bugs, fill issues on github.
 Feel free to fork, modify and have fun with it :)
