@@ -46,6 +46,7 @@ MicroEvent.mixin	= function(destObject){
 			destObject[props[i]] = MicroEvent.prototype[props[i]];
 		}
 	}
+	return destObject;
 }
 
 // export in common js
