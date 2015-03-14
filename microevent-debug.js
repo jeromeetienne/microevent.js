@@ -10,20 +10,23 @@ MicroEvent.prototype	= {
 		this._events = this._events || {};		
 		this._events[event] = this._events[event]	|| [];
 		this._events[event].push(fct);
+		return this;
 	},
 	unbind	: function(event, fct){
 		console.assert(typeof fct === 'function');
 		this._events = this._events || {};		
-		if( event in this._events === false  )	return;
+		if( event in this._events === false  )	return this;
 		console.assert(this._events[event].indexOf(fct) !== -1);
 		this._events[event].splice(this._events[event].indexOf(fct), 1);
+		return this;
 	},
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};		
-		if( event in this._events === false  )	return;
+		if( event in this._events === false  )	return this;
 		for(var i = 0; i < this._events[event].length; i++){
 			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1))
 		}
+		return this;
 	}
 };
 
