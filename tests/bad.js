@@ -13,5 +13,14 @@ b.trigger("blerg", "no")
 
 c = {}
 MicroEvent.mixin(c)
-c.bind('foo',function(bar){console.log(bar)})
+fooFunc = function(bar){console.log(bar)};
+c.bind('foo', fooFunc)
+
+
+console.log("")
+console.log("You should see 'bar' once only:");
+console.log("")
 c.trigger('foo','bar')
+c.unbind('foo', fooFunc);
+c.trigger('foo', 'bar');
+

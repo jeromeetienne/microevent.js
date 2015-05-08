@@ -15,8 +15,13 @@ MicroEvent.prototype	= {
 		console.assert(typeof fct === 'function');
 		this._events = this._events || {};		
 		if( event in this._events === false  )	return;
-		console.assert(this._events[event].indexOf(fct) !== -1);
-		this._events[event].splice(this._events[event].indexOf(fct), 1);
+		length = this._events[event].length;
+		for (index = 0; index < length; index++) {
+			if (this._events[event][index] === fct)	break;
+		}
+		console.assert(index < length);
+		if (index == length)	return;
+		this._events[event].splice(index, 1);
 	},
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};		

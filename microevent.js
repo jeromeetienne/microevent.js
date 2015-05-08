@@ -3,7 +3,7 @@
  * 
  * - pure javascript - server compatible, browser compatible
  * - dont rely on the browser doms
- * - super simple - you get it immediatly, no mistery, no magic involved
+ * - super simple - you get it immediately, no mystery, no magic involved
  *
  * - create a MicroEventDebug with goodies to debug
  *   - make it safer to use
@@ -18,8 +18,13 @@ MicroEvent.prototype	= {
 	},
 	unbind	: function(event, fct){
 		this._events = this._events || {};
-		if( event in this._events === false  )	return;
-		this._events[event].splice(this._events[event].indexOf(fct), 1);
+		if (event in this._events === false)	return;
+		length = this._events[event].length;
+		for (index = 0; index < length; index++) {
+			if (this._events[event][index] === fct)	break;
+		}
+		if (index == length)	return;
+		this._events[event].splice(index, 1);
 	},
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};
