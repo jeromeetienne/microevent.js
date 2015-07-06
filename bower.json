@@ -1,0 +1,20 @@
+{
+	"name": "microevent",
+	"description": "event emitter micro library (works in node+browser)",
+	"authors": [
+		{
+			"name": "Jerome Etienne"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jeromeetienne/microevent.js.git"
+	},
+	"main": "microevent.js",
+	"ignore": [
+		"**/.*",
+		"*.json",
+		"*.md",
+		"*.txt"
+	]
+}
