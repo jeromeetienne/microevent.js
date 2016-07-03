@@ -1,6 +1,18 @@
 {
-	"name"		: "microevent",
-	"version"	: "1.0.0",
-	"description"	: "event emitter micro library (works in node+browser)",
-	"main"		: "microevent.js"
+  "name": "microevent",
+  "version": "1.0.0",
+  "description": "event emitter micro library (works in node+browser)",
+  "main": "microevent.js",
+  "keywords": [
+    "event",
+    "emitter",
+    "observer",
+    "browser"
+  ],
+  "homepage": "http://notes.jetienne.com/2011/03/22/microeventjs.html",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeromeetienne/microevent.js.git"
+  }
 }
