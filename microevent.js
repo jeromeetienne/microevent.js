@@ -53,3 +53,12 @@ MicroEvent.mixin	= function(destObject){
 if( typeof module !== "undefined" && ('exports' in module)){
 	module.exports	= MicroEvent;
 }
+
+if (!Array.prototype.indexOf) {
+	Array.prototype.indexOf = function(elem) {
+		for (var i = 0, length = this.length; i < length; i++) {
+			if (this[i] === elem)	return i;
+		}
+		return -1;
+	};
+}
