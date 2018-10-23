@@ -21,7 +21,7 @@ To include it in a nodejs code isnt much harder
 var MicroEvent = require('./microevent.js')
 ```
 
-Now suppose you got a class `Foobar`, and you wish it to support the observer partern. do
+Now suppose you got a class `Foobar`, and you wish it to support the observer pattern. do
 
 ```js
 MicroEvent.mixin(Foobar)
@@ -29,7 +29,7 @@ MicroEvent.mixin(Foobar)
 
 That's it. The repository contains an [example in browser](https://github.com/jeromeetienne/microevent.js/blob/master/examples/example.html)
 and an [example in nodejs](https://github.com/jeromeetienne/microevent.js/blob/master/examples/example.js).
-Both use the same code in different contexts. Let me walk you thru it.
+Both use the same code in different contexts. Let me walk you through it.
 
 ## Example
 
